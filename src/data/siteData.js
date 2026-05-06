@@ -32,9 +32,11 @@ export const serviceSections = [
         items: [
           "Ojek Motor",
           "Dorong Motor",
-          "Antar Jemput Ban Bocor",
+          "Antar Jemput Barang",
           "Antar Jemput Servis Motor",
+          "Antar Jemput Ban Bocor",
           "Antri SPBU",
+          "Dan lain-lain",
         ],
         href: "#kontak",
       },
@@ -46,19 +48,35 @@ export const serviceSections = [
           "Antar Jemput Ban Bocor",
           "Antar Jemput Servis Mobil",
           "Antri SPBU",
+          "Dan lain-lain",
         ],
         href: "#kontak",
       },
       {
         name: "Angkut Barang",
-        items: ["Antar Jemput Barang", "Pick Up"],
+        items: ["Antar Jemput Barang", "Pick Up", "Towing Mobil", "Dan lain-lain"],
         href: "#kontak",
       },
       {
         name: "Bersih Bersih",
-        items: ["Rumah Subsidi", "Rumah Komersil", "Ruang Tamu", "Tandon"],
+        items: ["Bersih-bersih Rumah", "Bersih-bersih Pekarangan", "Treatment Kolam Renang", "Dan lain-lain"],
         href: "#kontak",
       },
+      {
+        name: "Teknisi/Tukang",
+        items: ["Perbaikan Kecil/Besar", "Jasa Las", "Pemasangan CCTV", "Penyedia Teknisi/Tukang Profesional", "Dan lain-lain"],
+        href: "#kontak",
+      },
+      {
+        name: "Jual Beli",
+        items: ["Jual Beli Motor", "Jual Beli Mobil", "Jual Beli Barang", "Dan lain-lain"],
+        href: "#kontak",
+      },
+      {
+        name: "Konsultasi IT",
+        items: ["Perbaikan/Pembuatan Website", "Perbaikan/Pembuatan Mobile apps", "Perbaikan Bug", "Company Profile", "Dan lain-lain"],
+        href: "#kontak",
+      }
     ],
   },
   {
@@ -66,22 +84,27 @@ export const serviceSections = [
     services: [
       {
         name: "Jastip",
-        items: ["Jastip Makanan", "Jastip Minuman", "Jastip Barang"],
+        items: ["Jastip Makanan", "Jastip Minuman", "Jastip Barang", "Dan lain-lain"],
         href: "#kontak",
       },
       {
         name: "Daily Activity",
-        items: ["Rawat Peliharaan", "Jaga Anak", "Dorong Motor", "Ban Bocor"],
+  items: ["Jaga Anak", "Pasang Gas", "Bantuan Cepat", "Dan lain-lain"],
+        href: "#kontak",
+      },
+      {
+        name: "Tim Profesional",
+  items: ["Wedding & Event Organizer", "Shadow Teacher", "Psikoterapi", "Photografer", "Mengawasi/Mengintai Seseorang", "Dan lain-lain"],
         href: "#kontak",
       },
       {
         name: "Jasa Nemenin",
-        items: ["Teman Ngopi", "Teman Nonton", "Teman Curhat", "Teman Wisata"],
+        items: ["Teman Ngopi", "Teman Nonton", "Teman Curhat", "Teman Wisata", "Dan lain-lain"],
         href: "#kontak",
       },
       {
         name: "Laundry",
-        items: ["Antar Cuci Sepeda", "Antar Cuci Mobil", "Antar Cuci Baju"],
+        items: ["Antar Cuci Baju", "Antar Cuci Motor", "Antar Cuci Mobil", "Dan lain-lain"],
         href: "#kontak",
         actionLabel: "Pesan Sekarang",
       },
@@ -91,27 +114,13 @@ export const serviceSections = [
     title: "Kami Siap Membantu",
     services: [
       {
-        name: "All Service",
-        items: [
-          "Antar Service Sepeda",
-          "Antar Service Mobil",
-          "Antar Service Elektronik",
-        ],
-        href: "#kontak",
-      },
-      {
         name: "Travel",
-        items: ["Driver", "Rental Motor", "Rental Mobil"],
-        href: "#kontak",
-      },
-      {
-        name: "Editing",
-        items: ["Edit Foto/Video", "Fotographer", "Videographer"],
+        items: ["Driver", "Rental Motor", "Rental Mobil", "Dan lain-lain"],
         href: "#kontak",
       },
       {
         name: "Bantuan Online",
-        items: ["SleepCall", "Stalker", "Joki Game", "Buzzer"],
+        items: ["SleepCall", "Ulasan/Rating", "Stalker", "Orang Bayaran (Meramaikan Acara, Grand Opening, dll)", "Dan lain-lain"],
         href: "#kontak",
       },
     ],
@@ -121,20 +130,8 @@ export const serviceSections = [
     services: [
       {
         name: "Joki Tugas",
-        items: ["Skripsi", "Makalah", "Praktikum", "PR"],
+        items: ["Skripsi", "PR", "Dan lain-lain"],
         href: "#kontak",
-      },
-      {
-        name: "Teknisi",
-        items: ["Bangunan", "Listrik", "Air"],
-        href: "#kontak",
-      },
-      { name: "SPA", items: ["Massage", "Scrub", "Refleksi"], href: "#kontak" },
-      {
-        name: "Jasa IT",
-        items: ["Website", "Aplikasi Mobile"],
-        href: "#kontak",
-        actionLabel: "Pesan Sekarang",
       },
     ],
   },
@@ -224,9 +221,9 @@ export const footerSections = [
 
 export const contact = {
   address: "jln. Subrantas No. 123, Panam, Pekanbaru, Riau, Indonesia",
-  email: "msa@gmail.com",
+  email: "mitraserbabisa.support@gmail.com",
   phone: "0852-6299-2208",
   instagram: "https://www.instagram.com/adatohelp",
   tiktok: "https://www.tiktok.com/@adatohelp",
-  whatsapp: "https://wa.me/6285262992208",
+  whatsapp: "https://wa.me/6285262992208?text=Dengan%20MSA%20siap%20membantu%20apa%20saja",
 };

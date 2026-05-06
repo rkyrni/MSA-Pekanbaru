@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import SectionHeading from './components/SectionHeading'
 import ServiceCard from './components/ServiceCard'
 import StrengthFeatureIcon from './components/StrengthFeatureIcon'
@@ -15,7 +16,38 @@ import {
   testimonials,
 } from './data/siteData'
 
+const galleryPhotos = Object.entries(
+  import.meta.glob('./assets/gambar*.jpeg', { eager: true, import: 'default' }),
+)
+  .sort(([a], [b]) => {
+    const numberA = Number(a.match(/gambar(\d+)\.jpeg$/)?.[1] ?? 0)
+    const numberB = Number(b.match(/gambar(\d+)\.jpeg$/)?.[1] ?? 0)
+    return numberA - numberB
+  })
+  .map(([, src]) => src)
+
 function App() {
+  const [selectedPhoto, setSelectedPhoto] = useState(null)
+
+  const openPhotoPreview = (photo) => setSelectedPhoto(photo)
+  const closePhotoPreview = () => setSelectedPhoto(null)
+
+  useEffect(() => {
+    if (!selectedPhoto) return undefined
+
+    const onEscape = (event) => {
+      if (event.key === 'Escape') closePhotoPreview()
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onEscape)
+
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onEscape)
+    }
+  }, [selectedPhoto])
+
   return (
     <div className="relative overflow-hidden bg-[#f6f2e9] text-[#1F3A5F]">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_0%,_rgba(212,160,23,0.22),_transparent_32%),radial-gradient(circle_at_88%_12%,_rgba(46,125,50,0.17),_transparent_36%)]" />
@@ -142,7 +174,7 @@ function App() {
                   <h3 className="text-base font-black text-[#1F3A5F]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[#49678d]">{item.description}</p>
                   <div
-                    className={`mx-auto mt-4 h-1.5 w-16 rounded-full ${idx % 2 === 0 ? 'bg-[#D4A017]' : 'bg-[#2E7D32]'}`}
+                    className={`mx-auto mt-4 h-1.5 w-16 rounded-full bg-[#2E7D32]`}
                     aria-hidden="true"
                   />
                 </article>
@@ -183,7 +215,77 @@ function App() {
           </div>
         </section>
 
+        <section id="galeri" className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Galeri Foto"
+            title="Momen Layanan MSA"
+            subtitle="Beberapa dokumentasi aktivitas tim kami di lapangan."
+            center
+          />
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[170px]">
+            {galleryPhotos.map((photo, index) => {
+              const cardStyle =
+                index % 6 === 0
+                  ? 'sm:col-span-2 sm:row-span-2'
+                  : index % 5 === 0
+                    ? 'lg:row-span-2'
+                    : ''
+
+              return (
+                <article
+                  key={photo}
+                  className={`group relative overflow-hidden rounded-2xl border border-[#1F3A5F]/10 bg-white shadow-[0_16px_38px_-24px_rgba(31,58,95,0.75)] ${cardStyle}`}
+                  onClick={() => openPhotoPreview(photo)}
+                >
+                  <img
+                    src={photo}
+                    alt={`Dokumentasi layanan MSA ${index + 1}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#081a32]/60 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+                </article>
+              )
+            })}
+          </div>
+        </section>
+
       </main>
+
+      {selectedPhoto ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a1728]/35 px-4"
+          onClick={closePhotoPreview}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Pratinjau foto"
+        >
+          <div className="relative w-full max-w-4xl" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              onClick={closePhotoPreview}
+              className="absolute -top-4 right-0 grid h-10 w-10 place-items-center rounded-full border border-red-300 bg-red-600 p-0 text-white shadow-lg transition hover:bg-red-700"
+              aria-label="Tutup pratinjau"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+
+            <img
+              src={selectedPhoto}
+              alt="Foto galeri diperbesar"
+              className="max-h-[84vh] w-full rounded-2xl border border-white/60 object-contain shadow-[0_24px_60px_-20px_rgba(8,16,32,0.8)]"
+            />
+          </div>
+        </div>
+      ) : null}
 
       <footer id="kontak" className="border-t border-[#1F3A5F]/10 bg-[#eef1f4]">
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 md:grid-cols-4 md:px-6 lg:px-8">
